@@ -8,8 +8,8 @@ command -v unpack_archive >/dev/null || . /lib/img-lib.sh
 
 PATH=/usr/sbin:/usr/bin:/sbin:/bin
 
-imgfilename=$(getarg tmpfs.imgfile)
-tmpfssize=$(getarg tmpfs.size)
+imgfilename=$(getarg rd.tmpfs.imgfile)
+tmpfssize=$(getarg rd.tmpfs.size)
 
 mkdir -m 0755 -p /run/initramfs/tmp
 mount -n "${root#tmpfs:}" /run/initramfs/tmp

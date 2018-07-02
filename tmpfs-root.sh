@@ -25,4 +25,4 @@ if [ "$?" != "0" ]; then
 fi
 
 info "Unpacking archive to tmpfs root"
-tar xpzf /run/initramfs/tmp/$tmpfsfilename -C "$NEWROOT" && umount "${root#tmpfs:}
+tar xpzf /run/initramfs/tmp/$imgfilename -C "$NEWROOT" && umount "${root#tmpfs:}"

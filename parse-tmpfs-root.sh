@@ -6,9 +6,6 @@
 
 [ -z "$root" ] && root=$(getarg root=)
 
-imgfilename=$(getarg tmpfs.imgfile)
-tmpfssize=$(getarg tmpfs.size)
-
 if [ "${root%%:*}" = "tmpfs" ]; then
     tmpfsroot=$root
 fi

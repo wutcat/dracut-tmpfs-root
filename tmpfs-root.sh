@@ -8,18 +8,21 @@ command -v unpack_archive >/dev/null || . /lib/img-lib.sh
 
 PATH=/usr/sbin:/usr/bin:/sbin:/bin
 
+imgfilename=$(getarg tmpfs.imgfile)
+tmpfssize=$(getarg tmpfs.size)
+
 mkdir -m 0755 -p /run/initramfs/tmp
-mount -n /dev/vda1 /run/initramfs/tmp
+mount -n "${root#tmpfs:}" /run/initramfs/tmp
 if [ "$?" != "0" ]; then
     die "Failed to mount block device with root image"
     exit 1
 fi
 
-mount -t tmpfs -o size=${tmpfssize}M tmpfs "$NEWROOT"
+mount -t tmpfs -o size=$tmpfssize tmpfs "$NEWROOT"
 if [ "$?" != "0" ]; then
     die "Failed to mount tmpfs root"
     exit 1
 fi
 
 info "Unpacking archive to tmpfs root"
-tar xpzf /run/initramfs/tmp/"${tmpfsfilename}" -C "$NEWROOT" && umount /dev/vda1
+tar xpzf /run/initramfs/tmp/$tmpfsfilename -C "$NEWROOT" && umount /dev/vda1

@@ -18,29 +18,29 @@ fi
 modprobe -q loop
 
 case "$tmpfsroot" in
-    live:LABEL=*|LABEL=*) \
+    tmpfs:LABEL=*|LABEL=*) \
         root="${root#tmpfs:}"
         root="$(echo $root | sed 's,/,\\x2f,g')"
         root="tmpfs:/dev/disk/by-label/${root#LABEL=}"
         rootok=1 ;;
-    live:UUID=*|UUID=*) \
+    tmpfs:UUID=*|UUID=*) \
         root="${root#tmpfs:}"
         root="tmpfs:/dev/disk/by-uuid/${root#UUID=}"
         rootok=1 ;;
-    live:PARTUUID=*|PARTUUID=*) \
+    tmpfs:PARTUUID=*|PARTUUID=*) \
         root="${root#tmpfs:}"
         root="tmpfs:/dev/disk/by-partuuid/${root#PARTUUID=}"
         rootok=1 ;;
-    live:PARTLABEL=*|PARTLABEL=*) \
+    tmpfs:PARTLABEL=*|PARTLABEL=*) \
         root="${root#tmpfs:}"
         root="tmpfs:/dev/disk/by-partlabel/${root#PARTLABEL=}"
         rootok=1 ;;
-    live:/dev/*)
+    tmpfs:/dev/*)
         rootok=1 ;;
 esac
-info "root was $liveroot, is now $root"
+info "root was $tmpfsroot, is now $root"
 
 # make sure that init doesn't complain
-[ -z "$root" ] && root="live"
+[ -z "$root" ] && root="tmpfs"
 
 wait_for_dev -n "${root#tmpfs:}"

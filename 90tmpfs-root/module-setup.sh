@@ -19,6 +19,6 @@ installkernel() {
 
 install() {
     inst_multiple umount
-    inst_hook cmdline 99 "$moddir/parse-tmpfs-root.sh"
-    inst_hook mount 99 "$moddir/tmpfs-root.sh"
+    inst_hook cmdline 30 "$moddir/parse-tmpfs-root.sh"
+    inst_hook mount 30 "$moddir/tmpfs-root.sh"
 }

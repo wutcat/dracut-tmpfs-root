@@ -21,4 +21,5 @@ install() {
     inst_multiple umount
     inst_hook cmdline 30 "$moddir/parse-tmpfs-root.sh"
     inst_hook mount 30 "$moddir/tmpfs-root.sh"
+    inst_hook pre-pivot 99 "$moddir/tmpfs-fix-selinux.sh"
 }

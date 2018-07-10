@@ -26,7 +26,6 @@ dracut -N -a tmpfs-root -f /boot/initrd-tmpfs.img
 
 Create a suitable image archive
 -------------------------------
-Source hosts for images should have SELinux DISABLED (not just in Permissive mode). This is so that the filesystem can be labeled on first boot. Relabeling an already-labeled filesystem requires a reboot. TODO: Eliminate this requirement.
 
 How you get your image is up to you. For KVM VMs, you can use guestfish:
 ```shell

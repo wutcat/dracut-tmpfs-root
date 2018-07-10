@@ -27,10 +27,19 @@ dracut -N -a tmpfs-root -f /boot/initrd-tmpfs.img
 Create a suitable image archive
 -------------------------------
 
-How you get your image is up to you. For KVM VMs, you can use guestfish:
+How you get your image is up to you. For now, the image must be a gzipped tarball with permissions preserved (SELinux contexts will be restored from `/etc/selinux/...` after the image is extracted).
+
+For KVM VMs, you can use guestfish:
 ```shell
 guestfish --ro -a /work/disk.img -i copy-out / /work/newroot/
-tar czpf /work/rootfs.tar.gz
+cd /work/newroot
+tar cpzf /work/rootfs.tar.gz .
+```
+
+Or simply tarball an offline root filesystem:
+```shell
+mount /dev/centos/root /mnt
+tar cpzf rootfs.tgz -C /mnt
 ```
 
 Kernel cmdline arguments

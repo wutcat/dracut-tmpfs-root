@@ -34,6 +34,11 @@ case "$tmpfsroot" in
         rootok=1 ;;
     tmpfs:/dev/*)
         rootok=1 ;;
+    tmpfs:NFS=*)
+        root="${root#tmpfs:}"
+        root="tmpfs:${root#NFS=}"
+        isnfsroot=1
+        rootok=1 ;;
 esac
 info "root was $tmpfsroot, is now $root"
 

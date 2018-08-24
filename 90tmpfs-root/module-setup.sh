@@ -9,7 +9,7 @@ check() {
 }
 
 depends() {
-    echo img-lib
+    echo img-lib network nfs
     return 0
 }
 

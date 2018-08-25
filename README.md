@@ -46,6 +46,16 @@ Kernel cmdline arguments
 ------------------------
 All are required. (TODO: Sane defaults)
 - `root`: This takes a special syntax which this modules uses to hijack the root mount process: `root=tmpfs:/dev/vda1`
+  - A local disk can be specified by:
+    - Explicit device `root=tmpfs:/dev/sda1`
+    - Disk Label `root=tmpfs:LABEL=BOOT`
+    - Disk UUID `root=tmpfs:UUID=00361d4f-646b-478c-9947-73b9bec8531e`
+    - Partition Label `root=tmpfs:PARTLABEL=BOOTPART`
+    - Partition UUID `root=tmpfs:PARTUUID=8b4ec1c1-0ec7-4bc2-acef-077e9283362a`
+  - An NFS export can be specified by formats supported by Dracut nfs-lib:
+    - `root=tmpfs:NFS=nfs:10.0.0.11:/nfsexport`
+    - `root=tmpfs:NFS=nfs4:10.0.0.11:/nfsexport`
+    - `root=tmpfs:NFS=nfs:10.0.0.11:/nfsexport,tcp,hard,vers=3`
 - `rd.tmpfs.imgfile`: The relative path to the archive file on the volume set for `root`.
 - `rd.tmpfs.size`: The size of the tmpfs root filesystem. For a description of the `size` mount arguments, see https://www.kernel.org/doc/Documentation/filesystems/tmpfs.txt
 
@@ -56,4 +66,8 @@ linux16 /vmlinuz-3.10.0-693.11.6.el7.x86_64 root=tmpfs:/dev/vda1 rd.tmpfs.size=3
 Using an LVM volume
 ```shell
 linux16 /vmlinuz-3.10.0-693.11.6.el7.x86_64 root=tmpfs:/dev/mapper/centos-root rd.tmpfs.size=5G rd.tmpfs.imgfile=images/rootfs.tar.gz rd.lvm.lv=centos/root ro crashkernel=auto rhgb LANG=en_US.UTF-8
+```
+Using an NFS export
+```shell
+linux16 /vmlinuz-3.10.0-693.11.6.el7.x86_64 root=tmpfs:NFS=10.0.0.11:/nfsexport rd.tmpfs.size=5G rd.tmpfs.imgfile=images/rootfs.tar.gz,tcp ip=10.0.0.31:::24:compute1:eth1:none rd.neednet=1 ro crashkernel=auto rhgb LANG=en_US.UTF-8
 ```

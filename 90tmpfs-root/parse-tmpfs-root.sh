@@ -37,7 +37,7 @@ case "$tmpfsroot" in
     tmpfs:NFS=*)
         root="${root#tmpfs:}"
         root="tmpfs:${root#NFS=}"
-        isnfsroot=1
+        export isnfsroot=1
         rootok=1 ;;
 esac
 info "root was $tmpfsroot, is now $root"
@@ -45,4 +45,4 @@ info "root was $tmpfsroot, is now $root"
 # make sure that init doesn't complain
 [ -z "$root" ] && root="tmpfs"
 
-wait_for_dev -n "${root#tmpfs:}"
+[ -z "$isnfsroot" ] && wait_for_dev -n "${root#tmpfs:}"

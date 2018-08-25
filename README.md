@@ -47,15 +47,15 @@ Kernel cmdline arguments
 All are required. (TODO: Sane defaults)
 - `root`: This takes a special syntax which this modules uses to hijack the root mount process: `root=tmpfs:/dev/vda1`
   - A local disk can be specified by:
-    - Explicit device `root=tmpfs:/dev/sda1`
-    - Disk Label `root=tmpfs:LABEL=BOOT`
-    - Disk UUID `root=tmpfs:UUID=00361d4f-646b-478c-9947-73b9bec8531e`
-    - Partition Label `root=tmpfs:PARTLABEL=BOOTPART`
-    - Partition UUID `root=tmpfs:PARTUUID=8b4ec1c1-0ec7-4bc2-acef-077e9283362a`
+     - Explicit device `root=tmpfs:/dev/sda1`
+     - Disk Label `root=tmpfs:LABEL=BOOT`
+     - Disk UUID `root=tmpfs:UUID=00361d4f-646b-478c-9947-73b9bec8531e`
+     - Partition Label `root=tmpfs:PARTLABEL=BOOTPART`
+     - Partition UUID `root=tmpfs:PARTUUID=8b4ec1c1-0ec7-4bc2-acef-077e9283362a`
   - An NFS export can be specified by formats supported by Dracut nfs-lib:
-    - `root=tmpfs:NFS=nfs:10.0.0.11:/nfsexport`
-    - `root=tmpfs:NFS=nfs4:10.0.0.11:/nfsexport`
-    - `root=tmpfs:NFS=nfs:10.0.0.11:/nfsexport,tcp,hard,vers=3`
+     - `root=tmpfs:NFS=nfs:10.0.0.11:/nfsexport`
+     - `root=tmpfs:NFS=nfs4:10.0.0.11:/nfsexport`
+     - `root=tmpfs:NFS=nfs:10.0.0.11:/nfsexport,tcp,hard,vers=3`
 - `rd.tmpfs.imgfile`: The relative path to the archive file on the volume set for `root`.
 - `rd.tmpfs.size`: The size of the tmpfs root filesystem. For a description of the `size` mount arguments, see https://www.kernel.org/doc/Documentation/filesystems/tmpfs.txt
 

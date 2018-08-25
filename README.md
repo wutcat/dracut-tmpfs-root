@@ -69,5 +69,5 @@ linux16 /vmlinuz-3.10.0-693.11.6.el7.x86_64 root=tmpfs:/dev/mapper/centos-root r
 ```
 Using an NFS export
 ```shell
-linux16 /vmlinuz-3.10.0-693.11.6.el7.x86_64 root=tmpfs:NFS=10.0.0.11:/nfsexport rd.tmpfs.size=5G rd.tmpfs.imgfile=images/rootfs.tar.gz,tcp ip=10.0.0.31:::24:compute1:eth1:none rd.neednet=1 ro crashkernel=auto rhgb LANG=en_US.UTF-8
+linux16 /vmlinuz-3.10.0-693.11.6.el7.x86_64 root=tmpfs:NFS=nfs:10.0.0.11:/nfsexport,tcp rd.tmpfs.size=5G rd.tmpfs.imgfile=images/rootfs.tar.gz ip=10.0.0.31:::24:compute1:eth1:none rd.neednet=1 ro crashkernel=auto rhgb LANG=en_US.UTF-8
 ```

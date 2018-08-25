@@ -31,9 +31,7 @@ How you get your image is up to you. For now, the image must be a gzipped tarbal
 
 For KVM VMs, you can use guestfish:
 ```shell
-guestfish --ro -a /work/disk.img -i copy-out / /work/newroot/
-cd /work/newroot
-tar cpzf /work/rootfs.tar.gz .
+guestfish --ro -a /work/disk.img -i tar-out / /work/rootfs.tar.gz compress:gzip
 ```
 
 Or simply tarball an offline root filesystem:
